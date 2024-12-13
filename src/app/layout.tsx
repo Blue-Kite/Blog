@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import '@/config/globals.css';
-import { Inter } from 'next/font/google';
-const inter = Inter({ subsets: ['latin'] });
+import { Header } from '@/components/layouts/Header';
+import { Footer } from '@/components/layouts/Footer';
 
 export const metadata: Metadata = {
     title: 'Create kitedev blog',
@@ -14,8 +14,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={inter.className}>{children}</body>
+        <html lang="en" className="h-full scroll-smooth">
+            <body>
+                <Header />
+                <main className="mt-[64px] flex flex-col flex-1">
+                    {children}
+                </main>
+                <Footer />
+            </body>
         </html>
     );
 }
