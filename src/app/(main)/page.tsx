@@ -1,4 +1,4 @@
 const Blog = () => {
-    return <div></div>;
+  return <div></div>;
 };
 export default Blog;
