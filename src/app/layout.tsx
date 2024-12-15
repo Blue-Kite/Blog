@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import '@/config/globals.css';
 import { Header } from '@/components/layouts/Header';
 import { Footer } from '@/components/layouts/Footer';
+import { FontClassNames } from '@/config/font';
 
 export const metadata: Metadata = {
   title: 'Create kitedev blog',
@@ -15,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className='h-full scroll-smooth'>
-      <body>
+      <body className={FontClassNames}>
         <Header />
         <main className='mt-[64px] flex flex-1 flex-col'>{children}</main>
         <Footer />
