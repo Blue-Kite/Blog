@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { FaGithub } from 'react-icons/fa';
+import { IoIosMail } from 'react-icons/io';
 
 export const Footer = () => {
   return (
@@ -10,6 +11,7 @@ export const Footer = () => {
         <Link href='https://github.com/Blue-Kite' target='_blank'>
           <FaGithub />
         </Link>
+        <IoIosMail />
       </div>
       <div>
         © 2024. <span className='font-semibold'>Kite</span> all rights
