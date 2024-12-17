@@ -13,7 +13,7 @@ export const Header = () => {
   return (
     <header className='flex h-[64px] w-full flex-col items-center justify-center'>
       <div className='flex h-full w-full items-center justify-between px-4'>
-        <div className='font-poppins flex flex-row items-center gap-[20px]'>
+        <div className='flex flex-row items-center gap-[20px] font-poppins'>
           {navList.map((navItem) => (
             <Link href={navItem.href} key={navItem.name}>
               {navItem.name}
@@ -22,9 +22,6 @@ export const Header = () => {
         </div>
         <div className='flex gap-3'>
           <MdOutlineLightMode />
-          <Link href='https://github.com/Blue-Kite' target='_blank'>
-            <FiGithub />
-          </Link>
         </div>
       </div>
     </header>
