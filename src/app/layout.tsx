@@ -16,9 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className='h-full scroll-smooth'>
-      <body className={FontClassNames}>
+      <body className={`${FontClassNames} flex min-h-screen flex-col`}>
         <Header />
-        <main className='mt-[64px] flex flex-1 flex-col'>{children}</main>
+        <main className='flex flex-1 flex-col'>{children}</main>
         <Footer />
       </body>
     </html>
