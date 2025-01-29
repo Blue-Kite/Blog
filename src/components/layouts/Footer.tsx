@@ -13,9 +13,9 @@ export const Footer = () => {
         </Link>
         <IoIosMail size={35} />
       </div>
-      <div>
-        © 2024. <span className='font-semibold'>Kite</span> all rights
-        reserved.
+      <div className='pb-[10px]'>
+        © {`${new Date().getFullYear()} `}
+        <span className='font-semibold'>Kite</span> all rights reserved.
       </div>
     </footer>
   );

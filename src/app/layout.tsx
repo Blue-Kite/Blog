@@ -3,6 +3,7 @@ import '@/config/globals.css';
 import { Header } from '@/components/layouts/Header';
 import { Footer } from '@/components/layouts/Footer';
 import { FontClassNames } from '@/config/font';
+import { ThemeProvider } from 'next-themes';
 
 export const metadata: Metadata = {
   title: 'Create kitedev blog',
@@ -15,11 +16,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className='h-full scroll-smooth'>
+    <html lang='en' className='h-full scroll-smooth' suppressHydrationWarning>
       <body className={`${FontClassNames} flex min-h-screen flex-col`}>
-        <Header />
-        <main className='flex flex-1 flex-col'>{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Header />
+          <main className='flex flex-1 flex-col'>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

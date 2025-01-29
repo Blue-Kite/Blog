@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { IoIosSearch } from 'react-icons/io';
-import { MdOutlineLightMode } from 'react-icons/md';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
+import ThemeSwitch from './theme/ThemeSwitch';
 
 const navList = [
   { name: 'KiteDev', href: '/' },
@@ -24,9 +24,9 @@ export const Header = () => {
               href={navItem.href}
               key={navItem.name}
               className={cn(
-                'text-center text-sm transition-colors hover:text-primary',
+                'hover:text-primary text-center text-sm transition-colors',
                 pathname?.startsWith(navItem.href)
-                  ? 'bg-muted font-medium text-primary'
+                  ? 'bg-muted text-primary font-medium'
                   : 'text-muted-foreground',
               )}
             >
@@ -38,9 +38,7 @@ export const Header = () => {
           <Button variant='ghost' size='icon'>
             <IoIosSearch size={30} />
           </Button>
-          <Button variant='ghost' size='icon'>
-            <MdOutlineLightMode size={30} />
-          </Button>
+          <ThemeSwitch />
         </div>
       </div>
     </header>
