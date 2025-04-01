@@ -1,15 +1,11 @@
-export type Post = PostMatter & {
-  id: string;
-  category: string[];
+export interface PostMatter {
   title: string;
   description: string;
-  date: string;
-  content: string;
-  image?: string;
-};
+  date: Date;
+}
 
-export type PostMatter = {
-  slug: string;
-  readingMinutes: number;
-  readingCounts: number;
-};
+export interface Post extends PostMatter {
+  content: string;
+  //readingMinutes: number;
+  //readingCounts: number;
+}
