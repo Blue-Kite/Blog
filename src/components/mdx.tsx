@@ -31,7 +31,7 @@ const mdxComponents = {
 
 export function Mdx({ components, source }: any) {
   return (
-    <article className='prose dark:prose-invert prose-h1:text-2xl prose-a:break-all max-w-3xl break-keep'>
+    <article className='prose dark:prose-invert prose-a:break-all max-w-3xl break-keep'>
       <MDXRemote source={source} components={{ ...mdxComponents, ...(components || {}) }} />
     </article>
   );
