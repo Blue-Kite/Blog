@@ -1,27 +1,43 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
+import { ComponentProps, PropsWithChildren } from 'react';
+import rehypePrettyCode from 'rehype-pretty-code';
 
-function CustomLink(props: any) {
-  const href = props.href;
+type CustomLinkProps = PropsWithChildren<
+  {
+    href: string;
+  } & Omit<ComponentProps<'a'>, 'href'>
+>;
 
+function CustomLink({ children, href, ...props }: CustomLinkProps) {
   if (href.startsWith('/')) {
     return (
       <Link href={href} {...props}>
-        {props.children}
+        {children}
       </Link>
     );
   }
-
   if (href.startsWith('#')) {
-    return <a {...props} />;
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    );
   }
-
-  return <a target='_blank' rel='noreferrer' {...props} />;
+  return (
+    <a href={href} target='_blank' rel='noreferrer' {...props}>
+      {children}
+    </a>
+  );
 }
 
-function CustomImage(props: any) {
-  return <Image alt={props.alt} {...props} className='mx-auto rounded-md' priority />;
+type CustomImageProps = Omit<ImageProps, 'alt'> & {
+  alt: string;
+};
+
+function CustomImage({ alt, ...props }: CustomImageProps) {
+  return <Image alt={alt} {...props} className='mx-auto rounded-md' priority />;
 }
 
 const mdxComponents = {
@@ -32,7 +48,22 @@ const mdxComponents = {
 export function Mdx({ components, source }: any) {
   return (
     <article className='prose dark:prose-invert prose-a:break-all max-w-3xl break-keep'>
-      <MDXRemote source={source} components={{ ...mdxComponents, ...(components || {}) }} />
+      <MDXRemote
+        source={source}
+        components={{ ...mdxComponents, ...(components || {}) }}
+        options={{
+          mdxOptions: {
+            rehypePlugins: [
+              [
+                rehypePrettyCode,
+                {
+                  theme: { dark: 'github-dark-dimmed', light: 'github-light' },
+                },
+              ],
+            ],
+          },
+        }}
+      />
     </article>
   );
 }

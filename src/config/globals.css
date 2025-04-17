@@ -11,3 +11,62 @@
   --background: 0 0% 3.9%;
   --foreground: 0 0% 98%;
 }
+
+@layer components {
+  .prose {
+    @apply text-gray-900;
+  }
+
+  [data-theme='dark'] .prose {
+    @apply text-white;
+  }
+
+  /* 헤딩 */
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply text-gray-900;
+  }
+  [data-theme='dark'] .prose h1,
+  [data-theme='dark'] .prose h2,
+  [data-theme='dark'] .prose h3,
+  [data-theme='dark'] .prose h4,
+  [data-theme='dark'] .prose h5,
+  [data-theme='dark'] .prose h6 {
+    @apply text-white;
+  }
+
+  .prose hr {
+    @apply text-white;
+  }
+  [data-theme='dark'] .prose hr {
+    @apply border-gray-700;
+  }
+
+  .prose strong {
+    @apply font-bold text-gray-900;
+  }
+
+  [data-theme='dark'] .prose strong {
+    @apply text-white;
+  }
+  .prose em {
+    @apply italic text-gray-800;
+  }
+
+  [data-theme='dark'] .prose em {
+    @apply text-white;
+  }
+
+  /* 강조 표시된 텍스트 스타일 */
+  .prose mark {
+    @apply rounded px-1 text-gray-900;
+  }
+
+  [data-theme='dark'] .prose mark {
+    @apply text-white;
+  }
+}
