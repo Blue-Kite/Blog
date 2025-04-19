@@ -7,7 +7,7 @@ export const PostList = () => {
 
   return (
     <PostContainer>
-      {posts.map(({ metadata, slug }, i) => (
+      {posts.map(({ metadata, slug }) => (
         <PostCard key={slug} metadata={metadata} slug={slug} />
       ))}
     </PostContainer>

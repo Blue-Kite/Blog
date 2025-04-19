@@ -1,4 +1,4 @@
-import { MDXRemote } from 'next-mdx-remote/rsc';
+import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
 import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
 import { ComponentProps, PropsWithChildren } from 'react';
@@ -45,9 +45,9 @@ const mdxComponents = {
   Image: CustomImage,
 };
 
-export function Mdx({ components, source }: any) {
+export function Mdx({ components, source }: MDXRemoteProps) {
   return (
-    <article className='prose dark:prose-invert prose-a:break-all max-w-3xl break-keep'>
+    <article className='prose max-w-3xl break-keep dark:prose-invert prose-a:break-all'>
       <MDXRemote
         source={source}
         components={{ ...mdxComponents, ...(components || {}) }}
