@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { Mdx } from '../mdx';
 import { PostContainer } from './PostContainer';
 import { PostMatter } from '@/config/types';
+import Giscus from './Giscus';
 
 interface Props {
   post: {
@@ -21,6 +22,7 @@ export const PostDetail = ({ post }: Props) => {
       </div>
 
       <Mdx source={post.content} />
+      <Giscus />
     </PostContainer>
   );
 };

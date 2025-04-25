@@ -1,5 +1,13 @@
 import { PostDetail } from '@/components/post/PostDetail';
-import { getPostDetail } from '@/lib/post';
+import { getAllPosts, getPostDetail } from '@/lib/post';
+
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
