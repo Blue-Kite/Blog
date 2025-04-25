@@ -6,8 +6,46 @@ date: 2025-03-27
 
 ## 들어가며
 
-내용...
+## 기획
+
+### 기능 정리
+
+### 폴더 구조
+
+```
+public            # 이미지
+src/
+├── app/          # app 라우터 파일
+├── components/   # 공통 UI 컴포넌트
+├── config/       # 공통 설정(상수, 폰트, 타입, global css)
+├── data/         # 블로그 글
+├── lib/          # 유틸 함수
+
+```
+
+### 기술 스택
+
+1. Framework: Next.js
+
+2. Design: Tailwind CSS + Shadcn/ui
+
+3. 글 작성 및 파싱: MDX + Gray-matter + Next-MDX-Remote
+
+4. 댓글: Giscus
+
+5. 배포: AWS
+
+## 개발
+
+### 폰트 적용 및 다크모드 구현
+
+### MDX 파일기반 포스팅 목록/상세 구현
+
+### 댓글 기능
+
+## 배포
+
+배포할 때 항상 Vercel을 사용했다. 사실 Vercel은 알아서 다 해줘서 개발자가 딱히 해야할 게 없었다. 기껏해야 환경변수 추가하기 정도?  
+그래서 이번에는 AWS를 사용해보고자 했다. API 연동이 없어서 정적 배포로도 충분할 거 같았다. S3 + CloudFront + Route53 조합을 이용했으며 가비아에서 도메인을 구매했다.
 
 ## 참고
-
-내용...
