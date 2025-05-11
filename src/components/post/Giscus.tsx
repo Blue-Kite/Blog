@@ -4,9 +4,9 @@ import { useEffect, useRef } from 'react';
 
 import { useTheme } from 'next-themes';
 
-const repoName = process.env.NEXT_PUBLIC_GISCUS_REPO_NAME || '';
-const repoId = process.env.NEXT_PUBLIC_GISCUS_REPO_ID || '';
-const categoryId = process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID || '';
+const repoName = 'Blue-Kite/Blog-Comment';
+const repoId = 'R_kgDOOfbKGQ';
+const categoryId = 'Comments ';
 
 export default function Giscus() {
   const ref = useRef<HTMLDivElement>(null);
