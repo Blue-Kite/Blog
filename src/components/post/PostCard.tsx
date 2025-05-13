@@ -9,7 +9,7 @@ interface Props {
 
 export const PostCard = ({ metadata, slug }: Props) => {
   return (
-    <article key={slug} className='w-full rounded-lg py-5'>
+    <article key={slug} className='w-full rounded-lg px-3 py-5 sm:px-0'>
       <Link href={`/post/${slug}`}>
         <div className='flex items-center justify-between'>
           <h2 className='text-lg font-bold sm:text-xl md:text-lg'>{metadata.title}</h2>

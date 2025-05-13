@@ -15,6 +15,9 @@ const navList = [
 export const Header = () => {
   const pathname = usePathname();
 
+  const normalizedPathname =
+    pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
+
   return (
     <header className='flex h-[64px] w-full flex-col items-center justify-center border-b px-[50px]'>
       <div className='flex h-full w-full items-center justify-between'>
@@ -25,9 +28,7 @@ export const Header = () => {
               key={navItem.name}
               className={cn(
                 'hover:text-primary text-center text-sm transition-colors',
-                pathname?.startsWith(navItem.href)
-                  ? 'bg-muted text-primary font-medium'
-                  : 'text-muted-foreground',
+                normalizedPathname === navItem.href ? 'font-bold' : '',
               )}
             >
               {navItem.name}
