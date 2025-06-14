@@ -20,7 +20,6 @@ export const PostDetail = ({ post }: Props) => {
         <h4>{post.metadata.description}</h4>
         <small>{dayjs(post.metadata.date).format('YYYY년 MM월 DD일')}</small>
       </div>
-
       <div className='mb-5 flex flex-col gap-10'>
         <Mdx source={post.content} />
         <Giscus />

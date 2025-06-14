@@ -1,3 +1,3 @@
 export const PostContainer = ({ children }: { children: React.ReactNode }) => {
-  return <section className='mx-auto w-full max-w-3xl border border-black'>{children}</section>;
+  return <section className='mx-auto flex w-full max-w-3xl flex-col'>{children}</section>;
 };

@@ -16,11 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className='h-full scroll-smooth' suppressHydrationWarning>
+    <html lang='en' className='h-full scroll-my-20 scroll-smooth' suppressHydrationWarning>
       <body className={`${FontClassNames} flex min-h-screen flex-col`}>
         <ThemeProvider>
           <Header />
-          <main className='flex flex-1 flex-col'>{children}</main>
+          <main className='container mx-auto flex flex-1 flex-col'>{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
