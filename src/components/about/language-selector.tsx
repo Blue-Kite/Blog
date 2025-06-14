@@ -11,8 +11,8 @@ export default function LanguageSelector({ className }: { className?: string }) 
   const pathname = usePathname();
   const router = useRouter();
 
-  const isKo = pathname.endsWith('/ko');
-  const isEn = pathname.endsWith('/en');
+  const isKo = /\/ko\/?$/.test(pathname);
+  const isEn = /\/en\/?$/.test(pathname);
 
   useEffect(() => {
     setMounted(true);
@@ -24,9 +24,9 @@ export default function LanguageSelector({ className }: { className?: string }) 
 
   const onSelectChange = (value: string) => {
     if (value === 'ko') {
-      router.push(pathname.replace(/\/en$/, '/ko'));
+      router.push(pathname.replace(/\/en\/?$/, '/ko'));
     } else {
-      router.push(pathname.replace(/\/ko$/, '/en'));
+      router.push(pathname.replace(/\/ko\/?$/, '/en'));
     }
   };
 
