@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-const MDX_DIR = 'src/data';
+const MDX_DIR = 'src/data/posts';
 const ROOT_DIR = path.join(process.cwd(), MDX_DIR);
 
 const getMdxFiles = () => fs.readdirSync(ROOT_DIR).filter((file) => path.extname(file) === '.mdx');
