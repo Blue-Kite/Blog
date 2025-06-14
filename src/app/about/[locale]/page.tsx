@@ -1,16 +1,11 @@
 import { Locale, RESUME } from '@/config/types';
 
-interface Props {
-  params: {
-    locale: Locale;
-  };
-}
-
 export function generateStaticParams() {
   return Object.keys(RESUME).map((locale) => ({ locale }));
 }
 
-export default function AboutPage({ params: { locale } }: Props) {
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = (await params).locale as Locale;
   const RESUME_DATA = RESUME[locale].data;
 
   return (
