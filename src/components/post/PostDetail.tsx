@@ -4,7 +4,7 @@ import { PostContainer } from './PostContainer';
 import { PostMatter } from '@/config/types';
 import Giscus from './Giscus';
 import { FaCalendarDays } from 'react-icons/fa6';
-import { parseToc } from '@/lib/post';
+//import { parseToc } from '@/lib/post';
 
 interface Props {
   post: {
@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const PostDetail = ({ post }: Props) => {
-  const toc = parseToc(post.content);
+  //const toc = parseToc(post.content);
   //console.log(toc);
 
   return (
