@@ -1,4 +1,4 @@
-import { PostMatter } from '@/config/types';
+import { Heading, PostMatter } from '@/config/types';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -31,4 +31,24 @@ export const getPostDetail = (slug: string) => {
   const filePath = path.join(process.cwd(), MDX_DIR, `${slug}.mdx`);
   const detail = readMdxFile(filePath);
   return { ...detail, slug };
+};
+
+export const parseToc = (content: string): Heading[] => {
+  const regex = /^(##|###) (.*$)/gim;
+  const headingList = content.match(regex);
+  return (
+    headingList?.map((heading: string) => ({
+      text: heading.replace('##', '').replace('#', ''),
+      link:
+        '#' +
+        heading
+          .replace('# ', '')
+          .replace('#', '')
+          .replace(/[\[\]:!@#$/%^&*()+=,.]/g, '')
+          .replace(/ /g, '-')
+          .toLowerCase()
+          .replace('?', ''),
+      indent: (heading.match(/#/g)?.length || 2) - 2,
+    })) || []
+  );
 };

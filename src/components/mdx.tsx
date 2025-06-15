@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ComponentProps, PropsWithChildren } from 'react';
 import rehypePrettyCode from 'rehype-pretty-code';
 import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug';
 
 type CustomLinkProps = PropsWithChildren<
   {
@@ -56,6 +57,7 @@ export function Mdx({ components, source }: MDXRemoteProps) {
           mdxOptions: {
             remarkPlugins: [remarkGfm],
             rehypePlugins: [
+              rehypeSlug,
               [
                 rehypePrettyCode,
                 {
