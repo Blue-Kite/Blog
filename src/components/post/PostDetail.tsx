@@ -3,6 +3,7 @@ import { Mdx } from '../mdx';
 import { PostContainer } from './PostContainer';
 import { PostMatter } from '@/config/types';
 import Giscus from './Giscus';
+import { FaCalendarDays } from 'react-icons/fa6';
 
 interface Props {
   post: {
@@ -14,16 +15,21 @@ interface Props {
 
 export const PostDetail = ({ post }: Props) => {
   return (
-    <PostContainer>
-      <div className='py-5'>
-        <h1 className='mb-1 text-3xl font-semibold'>{post.metadata.title}</h1>
-        <h4>{post.metadata.description}</h4>
-        <small>{dayjs(post.metadata.date).format('YYYY년 MM월 DD일')}</small>
+    <PostContainer className='mb-14'>
+      <div className='mt-14 text-center'>
+        <h1 className='mb-5 text-3xl font-bold md:text-4xl'>{post.metadata.title}</h1>
+        <h4 className='mb-3 text-base'>{post.metadata.description}</h4>
+        <div className='mb-5 flex flex-row items-center justify-center gap-1'>
+          <FaCalendarDays size={16} />
+          <span>{dayjs(post.metadata.date).format('YYYY년 MM월 DD일')}</span>
+        </div>
       </div>
-      <div className='mb-5 flex flex-col gap-10'>
+      <hr />
+      <article className='relative py-14'>
         <Mdx source={post.content} />
-        <Giscus />
-      </div>
+      </article>
+      <hr className='mb-14' />
+      <Giscus />
     </PostContainer>
   );
 };
