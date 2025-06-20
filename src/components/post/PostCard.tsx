@@ -11,7 +11,7 @@ export const PostCard = ({ metadata, slug }: Props) => {
   return (
     <article
       key={slug}
-      className='w-full rounded-md border-transparent px-3 py-5 transition hover:border hover:border-slate-700 hover:shadow-xl dark:border-transparent dark:hover:border-white'
+      className='w-full rounded-md border-transparent px-3 py-5 transition hover:border hover:border-blue-900 hover:shadow-xl dark:border-transparent dark:hover:border-white'
     >
       <Link href={`/post/${slug}`}>
         <div className='flex items-center justify-between'>
