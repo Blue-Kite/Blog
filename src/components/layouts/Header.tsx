@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { IoIosSearch } from 'react-icons/io';
 import { Button } from '../ui/button';
-import { cn } from '@/lib/utils';
+import { cn } from '@/libs/utils';
 import { usePathname } from 'next/navigation';
 import ThemeSwitch from './theme/ThemeSwitch';
 

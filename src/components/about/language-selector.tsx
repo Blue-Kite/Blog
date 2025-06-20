@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import * as S from '@/components/ui/select';
-import { cn } from '@/lib/utils';
+import { cn } from '@/libs/utils';
 import { RiGlobalLine } from 'react-icons/ri';
 
 export default function LanguageSelector({ className }: { className?: string }) {

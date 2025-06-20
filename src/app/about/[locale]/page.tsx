@@ -1,5 +1,5 @@
 import LanguageSelector from '@/components/about/language-selector';
-import { Locale, RESUME } from '@/config/types';
+import { Locale, RESUME } from '@/shared/types';
 
 export function generateStaticParams() {
   return Object.keys(RESUME).map((locale) => ({ locale }));

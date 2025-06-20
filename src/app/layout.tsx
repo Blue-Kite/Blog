@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import '@/config/globals.css';
+import '@/shared/globals.css';
 import { Header } from '@/components/layouts/Header';
 import { Footer } from '@/components/layouts/Footer';
-import { FontClassNames } from '@/config/font';
+import { FontClassNames } from '@/shared/font';
 import { ThemeProvider } from 'next-themes';
 
 export const metadata: Metadata = {

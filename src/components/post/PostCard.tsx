@@ -1,4 +1,4 @@
-import { PostMatter } from '@/config/types';
+import { PostMatter } from '@/shared/types';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 

@@ -1,4 +1,4 @@
-import { getAllPosts } from '@/lib/post';
+import { getAllPosts } from '@/libs/post';
 import { PostCard } from './PostCard';
 import { PostContainer } from './PostContainer';
 

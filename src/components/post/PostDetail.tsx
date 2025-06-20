@@ -1,10 +1,12 @@
 import dayjs from 'dayjs';
 import { Mdx } from '../mdx';
 import { PostContainer } from './PostContainer';
-import { PostMatter } from '@/config/types';
+import { PostMatter } from '@/shared/types';
 import Giscus from './Giscus';
 import { FaCalendarDays } from 'react-icons/fa6';
-//import { parseToc } from '@/lib/post';
+import { parseToc } from '@/libs/post';
+import TocTop from './TocTop';
+import TocSidebar from './TocSidebar';
 
 interface Props {
   post: {
@@ -15,8 +17,7 @@ interface Props {
 }
 
 export const PostDetail = ({ post }: Props) => {
-  //const toc = parseToc(post.content);
-  //console.log(toc);
+  const toc = parseToc(post.content);
 
   return (
     <PostContainer className='mb-14'>
@@ -28,8 +29,10 @@ export const PostDetail = ({ post }: Props) => {
           <span>{dayjs(post.metadata.date).format('YYYY년 MM월 DD일')}</span>
         </div>
       </div>
+      <TocTop toc={toc} />
       <hr />
       <article className='relative py-14'>
+        <TocSidebar toc={toc} />
         <Mdx source={post.content} />
       </article>
       <hr className='mb-14' />

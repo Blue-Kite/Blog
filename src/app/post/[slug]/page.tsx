@@ -1,5 +1,6 @@
 import { PostDetail } from '@/components/post/PostDetail';
-import { getAllPosts, getPostDetail } from '@/lib/post';
+import { getAllPosts, getPostDetail } from '@/libs/post';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -13,9 +14,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const slug = (await params).slug;
   const post = getPostDetail(slug);
 
-  if (!post) {
-    return false;
-  }
+  if (!post) notFound();
 
   return <PostDetail post={post} />;
 }
