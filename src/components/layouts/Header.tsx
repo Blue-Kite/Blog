@@ -1,11 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { IoIosSearch } from 'react-icons/io';
-import { Button } from '../ui/button';
 import { cn } from '@/libs/utils';
 import { usePathname } from 'next/navigation';
 import ThemeSwitch from './theme/ThemeSwitch';
+import { Search } from './search/Search';
 
 const navList = [
   { name: 'KiteDev', href: '/' },
@@ -42,9 +41,7 @@ export const Header = () => {
           })}
         </div>
         <div className='flex gap-3'>
-          <Button variant='ghost' size='icon'>
-            <IoIosSearch size={30} />
-          </Button>
+          <Search />
           <ThemeSwitch />
         </div>
       </div>

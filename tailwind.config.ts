@@ -10,6 +10,8 @@ export default {
     },
     extend: {
       colors: {
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
         blue: {
           '50': '#ecfaff',
           '100': '#d5f2ff',
