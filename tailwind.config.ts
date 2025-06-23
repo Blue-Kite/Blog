@@ -6,7 +6,7 @@ export default {
   theme: {
     fontFamily: {
       sans: ['var(--noto_sans_kr)'],
-      poppins: ['var(--poppins)'],
+      pretendard: ['var(--font-pretendard)'],
     },
     extend: {
       colors: {
