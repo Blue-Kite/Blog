@@ -7,6 +7,7 @@ import { ThemeProvider } from 'next-themes';
 import { SITE_CONFIG } from '@/shared/constant';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_CONFIG.domain),
   title: {
     template: '%s | bluekite blog',
     default: SITE_CONFIG.title,
@@ -16,6 +17,12 @@ export const metadata: Metadata = {
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
     siteName: SITE_CONFIG.title,
+    images: [
+      {
+        url: SITE_CONFIG.thumbnailURL,
+        alt: 'blog thumbnail',
+      },
+    ],
     type: 'website',
   },
   icons: {
