@@ -20,11 +20,13 @@ export const PostDetail = ({ post }: Props) => {
   const toc = parseToc(post.content);
 
   return (
-    <PostContainer className='mb-14'>
-      <div className='mt-14 text-center'>
-        <h1 className='mb-5 text-3xl font-bold md:text-4xl'>{post.metadata.title}</h1>
+    <PostContainer className='mt-5 sm:mb-10'>
+      <div className='mt-5 text-center sm:mt-10'>
+        <h1 className='mb-3 text-lg font-bold sm:mb-5 sm:text-xl md:text-2xl lg:text-3xl'>
+          {post.metadata.title}
+        </h1>
         <h4 className='mb-3 text-base'>{post.metadata.description}</h4>
-        <div className='mb-5 flex flex-row items-center justify-center gap-1'>
+        <div className='mb-3 flex flex-row items-center justify-center gap-1 text-sm sm:mb-5'>
           <FaCalendarDays size={16} />
           <span>{dayjs(post.metadata.date).format('YYYY년 MM월 DD일')}</span>
         </div>
