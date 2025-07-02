@@ -20,7 +20,7 @@ export const NavItem = ({ name, href }: Props) => {
     <Link
       href={href}
       className={cn(
-        'hover:text-primary text-center text-sm transition-colors',
+        'hover:text-primary text-center text-sm font-medium transition-colors',
         isActive ? 'font-bold text-blue-900' : '',
       )}
     >

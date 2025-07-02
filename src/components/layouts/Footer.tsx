@@ -2,17 +2,13 @@
 
 import Link from 'next/link';
 import { FaGithub } from 'react-icons/fa';
-import { IoIosMail } from 'react-icons/io';
 
 export const Footer = () => {
   return (
-    <footer className='flex h-[120px] flex-col items-center justify-center gap-1 bg-blue-950 text-center print:hidden'>
-      <div className='mb-4 flex justify-center gap-4'>
-        <Link href='https://github.com/Blue-Kite' target='_blank'>
-          <FaGithub size={24} color='white' />
-        </Link>
-        <IoIosMail size={24} color='white' />
-      </div>
+    <footer className='flex h-[80px] flex-col items-center justify-between bg-blue-950 py-3 text-center sm:h-[100px] sm:py-5 print:hidden'>
+      <Link href='https://github.com/Blue-Kite' target='_blank'>
+        <FaGithub className='h-[1.2rem] w-[1.2rem]' color='white' />
+      </Link>
       <div className='text-white'>
         © {`${new Date().getFullYear()} `}
         <span className='font-semibold'>Kite</span> all rights reserved.

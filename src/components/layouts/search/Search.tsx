@@ -36,7 +36,7 @@ export const Search = ({ posts }: SearchProps) => {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant='ghost' size='icon'>
-          <IoIosSearch size={26} className='text-foreground' />
+          <IoIosSearch className='h-[1.5rem] w-[1.5rem]' />
         </Button>
       </DialogTrigger>
       <DialogContent className='w-[90%] rounded-xl border bg-background p-6 text-foreground shadow-lg sm:max-w-2xl'>

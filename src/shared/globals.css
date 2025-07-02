@@ -3,13 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(0 0% 100%);
-  --foreground: hsl(0 0% 3.9%);
+  --white: hsl(0 0% 100%);
+  --black: hsl(0 0% 3.9%);
+
+  --background: white;
+  --foreground: var(--black);
+
+  --accent: hsl(210 40% 96.1%);
+  --accent-foreground: hsl(222.2 47.4% 11.2%);
 }
 
 [data-theme='dark'] {
-  --background: hsl(0 0% 3.9%);
-  --foreground: hsl(0 0% 98%);
+  --background: var(--black);
+  --foreground: var(--white);
+
+  --accent: hsl(217.2 32.6% 17.5%);
+  --accent-foreground: hsl(210 40% 98%);
 }
 
 @layer components {

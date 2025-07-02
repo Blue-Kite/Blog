@@ -12,6 +12,10 @@ export default {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        accent: {
+          DEFAULT: 'var(--accent)',
+          foreground: 'var(--accent-foreground)',
+        },
         blue: {
           '50': '#ecfaff',
           '100': '#d5f2ff',

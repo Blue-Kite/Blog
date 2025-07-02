@@ -23,13 +23,12 @@ const ThemeSwitch = () => {
   };
 
   return (
-    <Button
-      variant='ghost'
-      size='icon'
-      onClick={handleTheme}
-      className='border border-black transition-all duration-300 dark:border dark:border-white/20 hover:dark:border-white/40'
-    >
-      {theme === 'light' ? <MdOutlineLightMode size={30} /> : <MdOutlineDarkMode size={30} />}
+    <Button variant='ghost' size='icon' onClick={handleTheme} className=''>
+      {theme === 'light' ? (
+        <MdOutlineLightMode className='h-[1.5rem] w-[1.5rem]' />
+      ) : (
+        <MdOutlineDarkMode className='h-[1.5rem] w-[1.5rem]' />
+      )}
       <span className='sr-only'>Toggle theme</span>
     </Button>
   );
