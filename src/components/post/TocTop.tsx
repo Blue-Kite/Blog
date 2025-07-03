@@ -10,22 +10,25 @@ const TocTop = ({ toc }: Props) => {
   if (toc.length === 0) return null;
 
   return (
-    <nav className='mb-3 px-5 xl:hidden'>
-      <h2 className='text-lg font-semibold' id='table-of-contents-top'>
-        On this page
-      </h2>
-      <ul>
-        {toc.map((item) => (
-          <li
-            key={item.link}
-            className={cn(item.indent === 1 && 'ml-4', 'my-0 py-1')}
-          >
-            <Link href={item.link} className='hover:text-blue-500'>
-              {item.text}
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <nav className='xl:hidden'>
+      <hr className='mb-5 sm:mb-0' />
+      <div className='px-3'>
+        <h2 className='text-lg font-semibold' id='table-of-contents-top'>
+          On this page
+        </h2>
+        <ul className='mb-5 text-sm sm:mb-0'>
+          {toc.map((item) => (
+            <li
+              key={item.link}
+              className={cn(item.indent === 1 && 'ml-4', 'my-0 py-1')}
+            >
+              <Link href={item.link} className='hover:text-blue-500'>
+                {item.text}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };
