@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
+import typography from '@tailwindcss/typography';
 
-export default {
+const config = {
   darkMode: ['class'],
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
@@ -10,6 +11,7 @@ export default {
     },
     extend: {
       colors: {
+        input: 'var(--input)',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         accent: {
@@ -32,5 +34,7 @@ export default {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [typography],
 } satisfies Config;
+
+export default config;

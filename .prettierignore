@@ -12,3 +12,5 @@ Thumbs.db
 
 **/generated/
 **/__generated__
+
+**/*.mdx

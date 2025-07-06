@@ -5,6 +5,7 @@ import { Footer } from '@/components/layouts/Footer';
 import { FontClassNames } from '@/shared/font';
 import { ThemeProvider } from 'next-themes';
 import { SITE_CONFIG } from '@/shared/constant';
+import { Toaster } from '@/components/ui/sonner';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.domain),
@@ -39,13 +40,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className='h-full scroll-my-20 scroll-smooth' suppressHydrationWarning>
+    <html
+      lang='en'
+      className='h-full scroll-my-20 scroll-smooth'
+      suppressHydrationWarning
+    >
       <body className={`${FontClassNames} flex min-h-screen flex-col`}>
         <ThemeProvider>
           <Header />
-          <main className='container mx-auto flex flex-1 flex-col'>{children}</main>
+          <main className='container mx-auto flex flex-1 flex-col'>
+            {children}
+          </main>
           <Footer />
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );

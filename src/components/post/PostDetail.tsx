@@ -7,6 +7,7 @@ import { FaCalendarDays } from 'react-icons/fa6';
 import { parseToc } from '@/libs/post';
 import TocTop from './TocTop';
 import TocSidebar from './TocSidebar';
+import { FloatingButton } from './FloatingButton';
 
 interface Props {
   post: {
@@ -20,7 +21,7 @@ export const PostDetail = ({ post }: Props) => {
   const toc = parseToc(post.content);
 
   return (
-    <PostContainer className='mb-5 px-5 sm:mb-10 sm:px-0'>
+    <PostContainer className='mb-5 border px-5 sm:mb-10 sm:px-0'>
       <div className='mt-5 text-center sm:mt-10'>
         <h1 className='mb-3 text-lg font-bold sm:mb-5 sm:text-xl md:text-2xl lg:text-3xl'>
           {post.metadata.title}
@@ -33,12 +34,13 @@ export const PostDetail = ({ post }: Props) => {
       </div>
       <TocTop toc={toc} />
       <hr />
-      <article className='relative py-5 sm:py-10'>
+      <article className='relative border border-blue-700 py-5 sm:py-10'>
         <TocSidebar toc={toc} />
         <Mdx source={post.content} />
       </article>
       <hr className='mb-14' />
       <Giscus />
+      <FloatingButton />
     </PostContainer>
   );
 };
