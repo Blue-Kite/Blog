@@ -16,7 +16,7 @@ export default function useTocHighlight(
     };
 
     observer.current = new IntersectionObserver(handleObserver, {
-      rootMargin: '-64px 0px -120px 0px',
+      rootMargin: '-64px 0px -200px 0px',
       threshold: 1.0,
     });
 
