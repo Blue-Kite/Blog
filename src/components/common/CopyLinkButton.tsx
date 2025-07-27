@@ -5,7 +5,7 @@ import useWatchTimeout from '@/hooks/useWatchTimeout';
 import { useState } from 'react';
 import { IoCopyOutline as Copy } from 'react-icons/io5';
 import { IoCheckmark as Check } from 'react-icons/io5';
-//import { MdOutlineSmsFailed as Fail } from 'react-icons/md';
+import { toast } from 'sonner';
 
 interface ButtonProps {
   size?: number;
@@ -26,25 +26,15 @@ export const CopyLinkButton = ({
     setCopied(false);
   });
 
-  // const SuccessToastTitle = (
-  //   <div className='flex items-center gap-3'>
-  //     <Check size={16} /> Successfully Copied
-  //   </div>
-  // );
-
-  // const FailToastTitle = (
-  //   <div className='flex items-center gap-3'>
-  //     <Fail size={16} /> Copy Failed
-  //   </div>
-  // );
-
   const handleCopy = async () => {
     const copyUrl = url ? url : window.document.location.href;
     try {
       await navigator.clipboard.writeText(copyUrl);
       setCopied(true);
+      toast.success('Successfully Copied');
     } catch (e) {
       console.error(e);
+      toast.error('Copy Failed');
     }
   };
 
