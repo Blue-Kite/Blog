@@ -1,15 +1,15 @@
 import { getAllPosts } from '@/libs/post';
 import { PostCard } from './PostCard';
-import { PostContainer } from './PostContainer';
+import { Section } from '../ui/section';
 
 export const PostList = () => {
   const posts = getAllPosts();
 
   return (
-    <PostContainer>
+    <Section>
       {posts.map(({ metadata, slug }) => (
         <PostCard key={slug} metadata={metadata} slug={slug} />
       ))}
-    </PostContainer>
+    </Section>
   );
 };

@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { IoSettingsOutline as Setting } from 'react-icons/io5';
 import { Button } from '../ui/button';
 import { cn } from '@/libs/utils';
-import { CopyLinkButton } from './TocButtons/CopyLinkButton';
-import { ScrollToComment, ScrollTop } from './TocButtons/ScrollButtons';
+import { CopyLinkButton } from '../common/CopyLinkButton';
+import { ScrollToComment, ScrollTop } from '../common/ScrollButtons';
 
 export const FloatingButton = () => {
   const [visible, setVisible] = useState(false);

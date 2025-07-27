@@ -1,12 +1,15 @@
 import { cn } from '@/libs/utils';
 
-export const PostContainer = ({
+export const Section = ({
   className,
   children,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
-    <section className={cn('mx-auto flex w-full max-w-3xl flex-col', className)} {...props}>
+    <section
+      className={cn('mx-auto flex w-full max-w-3xl flex-col', className)}
+      {...props}
+    >
       {children}
     </section>
   );

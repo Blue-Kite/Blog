@@ -4,8 +4,8 @@ import useTocHighlight from '@/hooks/useTocHighlight';
 import { cn } from '@/libs/utils';
 import { Heading } from '@/shared/types';
 import Link from 'next/link';
-import { ScrollToComment, ScrollTop } from './TocButtons/ScrollButtons';
-import { CopyLinkButton } from './TocButtons/CopyLinkButton';
+import { ScrollToComment, ScrollTop } from '../common/ScrollButtons';
+import { CopyLinkButton } from '../common/CopyLinkButton';
 
 interface Props {
   toc: Heading[];
