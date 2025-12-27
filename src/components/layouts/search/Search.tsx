@@ -28,7 +28,8 @@ export const Search = ({ posts }: SearchProps) => {
   const filteredPosts = posts.filter(({ metadata }) => {
     const q = query.toLowerCase();
     return (
-      metadata.title.toLowerCase().includes(q) || metadata.description.toLowerCase().includes(q)
+      metadata.title.toLowerCase().includes(q) ||
+      metadata.description.toLowerCase().includes(q)
     );
   });
 
@@ -41,7 +42,7 @@ export const Search = ({ posts }: SearchProps) => {
       </DialogTrigger>
       <DialogContent className='w-[90%] rounded-xl border bg-background p-6 text-foreground shadow-lg sm:max-w-2xl'>
         <DialogHeader>
-          <DialogTitle className='text-lg font-semibold text-blue-700 dark:text-blue-400'>
+          <DialogTitle className='text-lg font-bold text-blue-700 dark:text-blue-400'>
             블로그 검색
           </DialogTitle>
         </DialogHeader>
@@ -63,7 +64,9 @@ export const Search = ({ posts }: SearchProps) => {
                 <SearchItem key={slug} title={metadata.title} slug={slug} />
               ))
             ) : (
-              <p className='text-muted-foreground text-sm'>검색 결과가 없습니다.</p>
+              <p className='text-muted-foreground text-sm'>
+                검색 결과가 없습니다.
+              </p>
             )}
           </div>
         </div>

@@ -12,16 +12,19 @@ interface Props {
 export const NavItem = ({ name, href }: Props) => {
   const pathname = usePathname();
   const normalizedPathname =
-    pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
+    pathname.endsWith('/') && pathname !== '/'
+      ? pathname.slice(0, -1)
+      : pathname;
 
-  const isActive = normalizedPathname === href || normalizedPathname.startsWith(href + '/');
+  const isActive =
+    normalizedPathname === href || normalizedPathname.startsWith(href + '/');
 
   return (
     <Link
       href={href}
       className={cn(
         'hover:text-primary text-center text-sm font-medium transition-colors',
-        isActive ? 'font-bold text-blue-900' : '',
+        isActive ? 'font-bold text-blue-800' : '',
       )}
     >
       {name}

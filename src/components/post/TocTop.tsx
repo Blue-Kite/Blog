@@ -11,12 +11,12 @@ const TocTop = ({ toc }: Props) => {
 
   return (
     <nav className='xl:hidden'>
-      <hr className='mb-5 sm:mb-0' />
+      <hr className='mb-5' />
       <div className='px-3'>
         <h2 className='text-lg font-semibold' id='table-of-contents-top'>
           On this page
         </h2>
-        <ul className='mb-5 text-sm sm:mb-0'>
+        <ul className='mb-5 text-sm'>
           {toc.map((item) => (
             <li
               key={item.link}
