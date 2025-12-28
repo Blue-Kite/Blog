@@ -1,10 +1,11 @@
-import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
-import Image, { ImageProps } from 'next/image';
+import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
-import { ComponentProps, PropsWithChildren } from 'react';
+import { type ComponentProps, type PropsWithChildren } from 'react';
 import rehypePrettyCode from 'rehype-pretty-code';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
+import remarkBreaks from 'remark-breaks';
+import rehypeUnwrapImages from 'rehype-unwrap-images';
 
 type CustomLinkProps = PropsWithChildren<
   {
@@ -34,17 +35,17 @@ function CustomLink({ children, href, ...props }: CustomLinkProps) {
   );
 }
 
-type CustomImageProps = Omit<ImageProps, 'alt'> & {
+type CustomImageProps = ComponentProps<'img'> & {
   alt: string;
 };
 
 function CustomImage({ alt, ...props }: CustomImageProps) {
-  return <Image alt={alt} {...props} className='mx-auto rounded-md' priority />;
+  return <img alt={alt} {...props} className='mx-auto block rounded-md' />;
 }
 
 const mdxComponents = {
   a: CustomLink,
-  Image: CustomImage,
+  img: CustomImage,
 };
 
 export function Mdx({ components, source }: MDXRemoteProps) {
@@ -55,9 +56,13 @@ export function Mdx({ components, source }: MDXRemoteProps) {
         components={{ ...mdxComponents, ...(components || {}) }}
         options={{
           mdxOptions: {
-            remarkPlugins: [remarkGfm],
+            remarkPlugins: [
+              remarkGfm,
+              remarkBreaks, // mdx 1줄 개행 지원
+            ],
             rehypePlugins: [
               rehypeSlug,
+              rehypeUnwrapImages,
               [
                 rehypePrettyCode,
                 {

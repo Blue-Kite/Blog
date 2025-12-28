@@ -7,13 +7,13 @@ date: 2025-03-27
 ## 들어가며
 
 1. 멋.
-   notion, tistory, velog 등 유명한 플랫폼을 제쳐두고 굳이 굳이 처음부터 개발하고 운영한다는 것은 피곤한 일이다.
-   그럼에도 블로그를 내 맘대로 커스텀마이징 할 수 있다는 점이 매력적이었다.
+   notion, tistory, velog 등 유명한 플랫폼을 제쳐두고 굳이 굳이 처음부터 개발하고 운영한다는 것은 피곤한 일이다. 그럼에도 블로그를 내 맘대로 커스텀마이징 할 수 있다는 점이 매력적이었다.
 
 2. 기술적 욕심.
-   프로젝트 세팅, 디자인, 개발, 배포까지 한 사이클을 완결시키고 유지보수 해야 하는 점에서 좋은 경험이 될 것으로 생각했다.
-   그리고 Next.js라는 기술 스택을 사용해 보고 싶었다. 수많은 장점을 차치하고 일단 **핫해 보였다.**
-   리액트처럼 대세를 넘어서 약간 프론트엔드 그 자체가 될지는 모르겠지만, 채용 공고에도 자주 보여서 프로젝트 하나 정도 가져보고 싶었다.
+   프로젝트 세팅, 디자인, 개발, 배포까지 한 사이클을 완결시키고 유지보수 해야 하는 점에서 좋은 경험이 될 것으로 생각했다. 그리고 Next.js라는 기술 스택을 사용해 보고 싶었다. 수많은 장점을 차치하고 일단 **핫해 보였다.**
+   리액트처럼 대세를 넘어서 약간 프론트엔드 그 자체가 될지는 모르겠지만, 채용 공고에도 자주 보여서 관련된 프로젝트 하나 가져보고 싶었다.
+
+![썸네일](/images/make-blog/doit.jpg)
 
 ## 기획
 
@@ -38,9 +38,7 @@ src/
 
 3. 글 작성 및 파싱: MDX + Gray-matter + Next-MDX-Remote
 
-4. 댓글: Giscus
-
-참고: https://giscus.app/ko
+4. 댓글: Giscus ( [공식 문서](https://giscus.app/ko) )
 
 5. 배포: AWS
 
@@ -52,10 +50,37 @@ src/
 
 ## 배포
 
-배포할 때 항상 Vercel을 사용했다. 사실 Vercel은 알아서 다 해줘서 개발자가 딱히 해야할 게 없었다.<br/>
-기껏해야 환경변수 추가하기 정도?<br/>
-그래서 이번에는 AWS를 사용해보고자 했다. API 연동이 없어서 정적 배포로도 충분할 거 같았다.<br/>
+배포할 때 주로 Vercel을 사용했다. Vercel은 알아서 다 해줘 딱히 할 게 없었다.
+기껏해야 환경변수 추가하기 정도? 
+그래서 이번에는 AWS를 사용해보고자 했다. API 연동이 없어서 정적 배포로도 충분할 거 같았다.
 S3 + CloudFront + Route53 조합을 이용했으며 가비아에서 도메인을 구매했다.
+Next.js 15 기준으로 프로젝트에선 2가지 작업이 필요했다. 
+
+1. `package.json` 파일의 script에 next build 추가
+
+2  `next.config.js` 를 아래처럼 변경
+
+```
+
+import type { NextConfig } from 'next';
+import createMDX from '@next/mdx';
+
+const nextConfig: NextConfig = {
+  /* config options here */
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  output: 'export',
+  trailingSlash: true,
+};
+const withMDX = createMDX({});
+
+export default withMDX(nextConfig);
+
+```
+next build를 실행하면, Next.js는 HTML/CSS/JS가 있는 out 폴더를 만든다.
+trailingSlash: true는 URL 끝에 /를 붙이는 옵션이다. 
+추가로 Next.js는 정적 배포할 때 에러가 나서 img 태그 사용으로 변경했다.
+
+배포 과정을 요약하면 다음 그림과 같다.
 
 ![이미지 테스트](/images/make-blog/deploy.png)
 
@@ -67,3 +92,6 @@ S3 + CloudFront + Route53 조합을 이용했으며 가비아에서 도메인을
    - [Sonner 공식 사이트](https://sonner.emilkowal.ski/)
    - [Shadcn Sonner 문서](https://v3.shadcn.com/docs/components/sonner)
    - [Sonner Toaster](https://sonner.emilkowal.ski/toaster)
+
+3. 배포
+   - [Next.js 공식 사이트](https://nextjs.org/docs/app/guides/static-exports)

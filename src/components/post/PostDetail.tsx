@@ -21,7 +21,7 @@ export const PostDetail = ({ post }: Props) => {
   const toc = parseToc(post.content);
 
   return (
-    <Section className='mb-5 px-5 sm:mb-10 sm:px-0'>
+    <Section className='mb-5 sm:mb-10 sm:px-0'>
       <div className='mt-5 text-center sm:mt-10'>
         <h1 className='mb-3 text-lg font-bold sm:mb-5 sm:text-xl md:text-2xl lg:text-3xl'>
           {post.metadata.title}
