@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { Mdx } from '../mdx';
-import { PostMatter } from '@/shared/types';
+import { Post } from '@/shared/types';
 import Giscus from './Giscus';
 import { FaCalendarDays } from 'react-icons/fa6';
 import { parseToc } from '@/libs/post';
@@ -10,11 +10,7 @@ import { FloatingButton } from './FloatingButton';
 import { Section } from '../ui/section';
 
 interface Props {
-  post: {
-    metadata: PostMatter;
-    content: string;
-    slug: string;
-  };
+  post: Post;
 }
 
 export const PostDetail = ({ post }: Props) => {
@@ -27,6 +23,7 @@ export const PostDetail = ({ post }: Props) => {
           {post.metadata.title}
         </h1>
         <h4 className='mb-3 text-base'>{post.metadata.description}</h4>
+        <h4 className='mb-3 text-base text-blue-500'>{post.categoryName}</h4>
         <div className='mb-5 flex flex-row items-center justify-center gap-1 text-sm sm:mb-10'>
           <FaCalendarDays size={16} />
           <span>{dayjs(post.metadata.date).format('YYYY년 MM월 DD일')}</span>

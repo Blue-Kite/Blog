@@ -4,11 +4,17 @@ import { RESUME_KO } from '@/data/resume/resume-ko';
 export interface PostMatter {
   title: string;
   description: string;
-  date: Date;
+  date: string;
+  category: string;
 }
 
-export interface Post extends PostMatter {
+export interface Post {
+  metadata: PostMatter;
   content: string;
+  url: string;
+  categoryPath: string;
+  categoryName: string;
+  slug: string;
   //readingMinutes: number;
   //readingCounts: number;
 }

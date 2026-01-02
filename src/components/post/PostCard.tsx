@@ -6,11 +6,12 @@ import { cn } from '@/libs/utils';
 interface Props {
   metadata: PostMatter;
   slug: string;
+  category: string;
 }
 
-export const PostCard = ({ metadata, slug }: Props) => {
+export const PostCard = ({ metadata, slug, category }: Props) => {
   return (
-    <Link href={`/post/${slug}`}>
+    <Link href={`/posts/${category}/${slug}`}>
       <li
         key={slug}
         className={cn(

@@ -10,16 +10,13 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { PostMatter } from '@/shared/types';
+import { Post } from '@/shared/types';
 import { useState } from 'react';
 import { IoIosSearch } from 'react-icons/io';
 import { SearchItem } from './SearchItem';
 
 interface SearchProps {
-  posts: {
-    metadata: PostMatter;
-    slug: string;
-  }[];
+  posts: Post[];
 }
 
 export const Search = ({ posts }: SearchProps) => {
