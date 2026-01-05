@@ -4,13 +4,6 @@ import { SITE_CONFIG } from '@/shared/constant';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-interface Props {
-  params: {
-    category: string;
-    slug: string;
-  };
-}
-
 export const dynamicParams = false; //미리 생성된 경로만 허용
 
 export async function generateStaticParams() {
@@ -22,8 +15,17 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = getPostDetail(params.category, params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string; slug: string }>;
+}): Promise<Metadata> {
+  const { category, slug } = await params;
+  const post = getPostDetail(category, slug);
+
+  if (!post) {
+    return { title: 'Not Found' };
+  }
 
   const title = `${post.metadata.title} | Kite.Post`;
   const description = post.metadata.description;
@@ -49,9 +51,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({
   params,
 }: {
-  params: { category: string; slug: string };
+  params: Promise<{ category: string; slug: string }>;
 }) {
-  const { category, slug } = params;
+  const { category, slug } = await params;
   const post = getPostDetail(category, slug);
 
   if (!post) notFound();
