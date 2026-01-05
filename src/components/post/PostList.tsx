@@ -8,9 +8,9 @@ export const PostList = () => {
 
   return (
     <Section>
-      {posts.map((post: Post, idx) => (
+      {posts.map((post: Post) => (
         <PostCard
-          key={idx}
+          key={post.url}
           metadata={post.metadata}
           slug={post.slug}
           category={post.categoryPath}

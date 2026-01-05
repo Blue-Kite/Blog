@@ -6,11 +6,9 @@ category: dev
 ---
 
 ## 랜더링
-
 **랜더링이란?** 서버에서 DOM 요소들을 Build하여 HTML 문서를 렌더링하는 것을 의미한다.
 
 ### CSR
-
 빠르고 다양한 인터랙션이 필요한 복잡한 UI(채팅, 지도기반 서비스)에 사용하면 좋다.
 SEO가 중요하지 않다면 CSR로 구현해도 무방하다.
 사용자의 네트워크 상황에 따라 API 요청과 응답이 느릴 수 있다.
@@ -21,38 +19,32 @@ SEO가 중요하지 않다면 CSR로 구현해도 무방하다.
 **과정**
 
 1. 클라이언트는 HTML, CSS, JS가 포함된 빈 HTML를 받음, 모든 JS 번들 받음
-
 2. 클라이언트(브라우저)에서 JS 번들 실행
-
 3. 클라이언트(브라우저)가 데이터 패칭
-
 4. 사용자 인터렉션(데이터 패칭, 라우팅 프로세스 등)에 따라 JS 번들 실행(브라우저가 이미 가지고 있음)
-   필요한 데이터를 API 요청.
 
 ### SSR
-
-최신 데이터 반영(최신 상태 페이지, 차트, 사용자 요청에 따라 동적으로 페이지 생성해야 할 때) 사용한다.
-Next.js에서는 getServerSideProps로 구현한다.
+항상 최신 데이터 반영(최신 상태 페이지, 차트, 사용자 요청에 따라 동적으로 페이지 생성해야 할 때)
+Next.js에서는 getServerSideProps 를 이용할 수 있다.
+API 응답이 끝나야 화면이 랜더링 된다 => 화면을 나누어 그리는 Streaming SSR
 
 ![이미지 테스트](/images/nextjs-part1/ssr.png)
 
 **과정**
 
 1. 서버에서 랜더링 된 HTML 파일을 클라이언트로 보냄, 서버에서 필요한 데이터를 페칭함
-
 2. 새로고침시마다 서버에서 페이지 받음
-
 3. 클라이언트 JS 번들을 실행해 정적 HTML에 인터렉션 추가(하이드레이션)
 
 ### SSG
 
-사용자 요청마다 재사용해서 매우 빠르게 응답 가능하다.
+빌드 타임에 페이지를 미리 생성
+페이지를 재사용해서 매우 빠르게 응답 가능하다.
 사용자 맞춤형 데이터나 최신 데이터 반영 어렵다.(자주 변경되지 않는 페이지에 적합)
-API 응답이 끝나야 화면이 랜더링 된다 => 화면을 나누어 그리는 Streaming SSR
 
 **과정**
 
-1. 빌드 시점(next build)에 랜더링과 데이터패칭이 완료된 HTML 문서가 생성
+1. 빌드 시점(next build)에 **랜더링과 데이터 패칭이 완료된** HTML 문서가 생성
 
 2. 클라이언트 JS 번들을 실행해 정적 HTML에 인터렉션 추가(Next.js의 하이드레이션)
 
@@ -63,7 +55,7 @@ SSR + ISR
 
 **과정**
 
-1. 주기적으로 빌드 시점(next build)에 랜더링과 데이터패칭이 완료된 HTML 문서가 생성
+1. 주기적으로 빌드 시점(next build)에 랜더링과 데이터 패칭이 완료된 HTML 문서가 생성
 
 2. 클라이언트 JS 번들을 실행해 정적 HTML에 인터렉션 추가(Next.js의 하이드레이션)
 
@@ -71,15 +63,15 @@ SSR + ISR
 
 ## 서버 컴포넌트 vs 클라이언트 컴포넌트
 
-서버 컴포넌트는 ssr를 보완하기 위해 등장했다. Hydration이 필요한 컴포넌트와 그렇지 않은 컴포넌트를 구별했다.
+Hydration이 필요한 컴포넌트와 그렇지 않은 컴포넌트를 구별해서 사용한다. 
 서버 컴포넌트는 JS 번들에 포함되지 않는채 오로지 서버에서만 실행된다. 서버 컴포넌트의 일부분을 클라이언트 컴포넌트로 구성되도록 하는걸 권장한다.
 데이터 페칭은 서버 컴포넌트에서 하자.
 
 요약하면,
 
-서버 컴포넌트: default 옵션, hydration이 필요없는 컴포넌트, 사전 랜더링시 서버에서 한 번 실행
+서버 컴포넌트: default 옵션, hydration이 필요 없는 컴포넌트, 사전 랜더링시 서버에서 한 번 실행, First Contentful Paint(FCP)를 향상 가능
 
-클라이언트 컴포넌트: use client로 명시, 사전 랜더링(즉 ssr가능) 이후 hydration을 거침.
+클라이언트 컴포넌트: `use client`로 명시, 사전 랜더링(즉 SSR 가능) 이후 hydration을 거침, 
 
 **클라이언트 컴포넌트를 반드시 사용하는 경우**
 
@@ -90,7 +82,9 @@ SSR + ISR
 
 ## 참고
 
-https://zerolog.vercel.app/posts/csr-ssr-ssg
+- [Next.js 공식문서](https://nextjs.org/docs/app/getting-started/server-and-client-components#static-rendering-default)
+
+https://www.jeong-min.com/81-nextjs-caching/
 
 https://www.yujiseok.blog/writing/react-server-components
 
