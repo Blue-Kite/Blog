@@ -1,0 +1,39 @@
+---
+title: 알잘딱깐센 Next.js 3부
+description: Next.js 라우팅에 대해 알아보자
+date: 2026-01-07
+category: dev
+---
+
+Next.js는 기본적으로 서버에서 랜더링된다. 이 서버 랜더링에는 2가지가 있다. 
+
+- `Static Rendering (or Prerendering)` : 빌드 시점에 또는 revalidation 중에 일어나며, 결과는 캐시된다.
+
+- `Dynamic Rendering` : 요청 시점에 랜더링된다.
+
+### Prefetching
+
+Prefetching란 사용자가 navigate하기 전에 라우트를 불러오는 것이다. Next.js는 `<Link>` 컴포넌트의 라우트를 미리 prefetch해온다.
+
+-  `Static Route` : 라우트를 전부 사전에 불러온다.
+
+-  `Dynamic Route` : prefetch는 건너뛰거나 `loading.tsx` 존재하면 그건 prefetch 한다.
+
+
+### Streaming
+
+loading.tsx
+
+1. layout.tsx처럼 해당 경로 하위의 모든 페이지에 streaming 설정이 된다.
+
+2. 비동기 컴포넌트이자 page 컴포넌트만 loading.tsx에만 적용된다.
+
+
+
+
+### Client-side transitions
+Next.js는 `<Link>` 컴포넌트를 통해 공유된 레이아웃과 UI는 유지하고 바뀌는 페이지의 부분만 업데이트한다.
+
+## 참고
+
+- [Next.js 공식문서](https://nextjs.org/docs/15/pages/building-your-application/routing)

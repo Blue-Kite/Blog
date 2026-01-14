@@ -1,0 +1,122 @@
+---
+title: 알잘딱깐센 Next.js 2부
+description: Next.j의 캐싱과 데이터 패칭에 대해 알아보자
+date: 2026-01-06
+category: dev
+---
+
+## 캐싱
+
+Next.js의 Cache Components는 하나의 라우트에서 정적 콘텐츠, 캐시된 콘텐츠, 동적 콘텐츠를 섞는 게 가능하게 한다. 즉, 정적 HTML 껍데기는 미리 랜더링해 브라우저에서 바로 보여주고, 동적 콘텐츠는 준비되는 대로 UI를 업데이트한다. 
+이러면 정적 사이트의 속도와 동적 렌더링의 유연성을 동시에 제공할 수 있다.
+
+아래 코드처럼 dynamic content일 때 2가지 선택지가 있다.
+1. 컴포넌트를 `<Suspense>`로 감싸서 렌더링을 요청 시점으로 연기하고, 콘텐츠가 준비될 때까지 대체 UI를 보여준다.
+
+2. `use cache`를 사용한다.
+
+```
+import { Suspense } from 'react'
+import fs from 'node:fs/promises'
+ 
+async function DynamicContent() {
+  // Network request
+  const data = await fetch('https://api.example.com/data')
+ 
+  // Database query
+  const users = await db.query('SELECT * FROM users')
+ 
+  // Async file system operation
+  const file = await fs.readFile('..', 'utf-8')
+ 
+  // Simulating external system delay
+  await new Promise((resolve) => setTimeout(resolve, 100))
+ 
+  return <div>Not in the static shell</div>
+}
+
+export default async function Page(props) {
+  return (
+    <>
+      <h1>Part of the static shell</h1>
+      {/* <p>Loading..</p> is part of the static shell */}
+      <Suspense fallback={<p>Loading..</p>}>
+        <DynamicContent />
+        <div>Sibling excluded from static shell</div>
+      </Suspense>
+    </>
+  )
+}
+```
+dynamic content뿐만 아니라 runtime data도 비결정적 데이터도 `<Suspense>`로 감쌀 수 있다.
+- `cookies`
+- `headers`
+- `searchParams`
+- `params`
+
+- `Math.random(), Date.now(), or crypto.randomUUID()`
+
+
+## 데이터 패칭
+
+### 서버 컴포넌트에서 데이터 패칭
+
+fetch나 ORM, database client를 사용할 수 있다
+
+```
+export default async function Page() {
+  const data = await fetch('https://api.vercel.app/blog')
+  const posts = await data.json()
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## 클라이언트 컴포넌트에서 데이터 패칭
+
+`use` hook를 사용하거나 라이브러리(SWR, Tanstack Query)를 이용한다.
+```
+import Posts from '@/app/ui/posts'
+import { Suspense } from 'react'
+ 
+export default function Page() {
+  // Don't await the data fetching function
+  const posts = getPosts()
+ 
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Posts posts={posts} />
+    </Suspense>
+  )
+}
+```
+
+```
+'use client'
+import { use } from 'react'
+ 
+export default function Posts({
+  posts,
+}: {
+  posts: Promise<{ id: string; title: string }[]>
+}) {
+  const allPosts = use(posts)
+ 
+  return (
+    <ul>
+      {allPosts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## 참고
+
+- [Next.js 공식문서](https://nextjs.org/docs/app/getting-started/fetching-data)
