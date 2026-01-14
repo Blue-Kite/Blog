@@ -6,7 +6,11 @@ import * as S from '@/components/ui/select';
 import { cn } from '@/libs/utils';
 import { RiGlobalLine } from 'react-icons/ri';
 
-export default function LanguageSelector({ className }: { className?: string }) {
+export default function LanguageSelector({
+  className,
+}: {
+  className?: string;
+}) {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -37,10 +41,18 @@ export default function LanguageSelector({ className }: { className?: string }) 
         <S.SelectValue />
       </S.SelectTrigger>
       <S.SelectContent align='center'>
-        <S.SelectItem className='flex justify-between' disabled={isKo} value='ko'>
+        <S.SelectItem
+          className='flex justify-between'
+          disabled={isKo}
+          value='ko'
+        >
           한국어
         </S.SelectItem>
-        <S.SelectItem className='flex justify-between' disabled={isEn} value='en'>
+        <S.SelectItem
+          className='flex justify-between'
+          disabled={isEn}
+          value='en'
+        >
           English
         </S.SelectItem>
       </S.SelectContent>

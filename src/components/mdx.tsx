@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import remarkBreaks from 'remark-breaks';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
+import { Callout } from './ui/callout';
 
 type CustomLinkProps = PropsWithChildren<
   {
@@ -46,6 +47,8 @@ function CustomImage({ alt, ...props }: CustomImageProps) {
 const mdxComponents = {
   a: CustomLink,
   img: CustomImage,
+  blockquote: Callout,
+  Callout,
 };
 
 export function Mdx({ components, source }: MDXRemoteProps) {

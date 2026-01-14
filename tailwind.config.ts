@@ -35,6 +35,10 @@ const config = {
           '900': '#0848a0',
           '950': '#0a2d61',
         },
+        informative: {
+          DEFAULT: 'var(--informative)',
+          foreground: 'var(--informative-foreground)',
+        },
       },
       typography: {
         DEFAULT: {

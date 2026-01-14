@@ -1,4 +1,4 @@
-import LanguageSelector from '@/components/about/language-selector';
+import LanguageSelector from '@/components/about/LanguageSelector';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Section } from '@/components/ui/section';
 import { Locale, RESUME } from '@/shared/types';
