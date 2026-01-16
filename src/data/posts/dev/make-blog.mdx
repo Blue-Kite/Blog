@@ -79,13 +79,16 @@ export default withMDX(nextConfig);
 
 
 ```
-next build를 실행하면, Next.js는 HTML/CSS/JS가 있는 out 폴더를 만든다. 모든 페이지가 빌드 타임에 생성된 SSG이다.
 trailingSlash: true는 URL 끝에 /를 붙이는 옵션이다. `/about     → /about/index.html`
 Next.js는 정적 배포에서 `<Image/>`컴포넌트의 최적화 기능을 사용할 수 없다. [관련 Next.js 문서](https://nextjs.org/docs/messages/export-image-api)
 
+next build를 실행하면, Next.js는 HTML/CSS/JS가 있는 out 폴더를 만든다. 현재 모든 페이지가 빌드 타임에 생성된 SSG이다.
+
+![next-build-result](/images/make-blog/build.png)
+
 배포 과정을 요약하면 다음 그림과 같다.
 
-![이미지 테스트](/images/make-blog/deploy.png)
+![aws-deploy](/images/make-blog/deploy.png)
 
 ## 참고
 1. 블로그 구성
